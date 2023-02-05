@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task form</title>
+    <link rel="stylesheet" href="task-form.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="hero-box-container">
+        <div class="hero-box-wrapper">
+            <div class="hero-box-content-wrapper">
+                <div class="content-wrapper">
+                    <div class="text-wrapper">
+                        <h1 class="hero-box-title">Interested in IT?</h1>
+                        <p class="hero-box-paragraph">Fill out a form and start your journey in IT</p>
+                    </div>
+                    <a class="hero-box-button" href="#form-wrapper">Form</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-list-wrapper">
+        <div id="form-wrapper">
+            <h2 class="form-title">Student form</h2>
+            <form id="student-form" novalidate>
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input class="input" type="text" name="name" id="name" placeholder="Name" minlength="2" maxlength="25" value="Indre" required>
+                </div>
+                <div class="input-group">
+                    <label for="surname">Last name</label>
+                    <input class="input" type="text" name="surname" id="surname" placeholder="Surname" minlength="2" maxlength="35" value="Vaitkeviciute" required>
+                </div>
+                <div class="input-group">
+                    <label for="age">Age</label>
+                    <input class="input" type="number" name="age" id="age" min="1" max="100" step="1" placeholder="Age" value="26" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Phone number</label>
+                    <input class="input" type="phone" name="phone" id="phone" placeholder="Phone number" value="+37063409771" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input class="input" type="email" name="email" id="email" placeholder="Email" value="indre.vaitkeviciute96@gmail.com" required>
+                </div>
+                <div class="input-group-it">
+                    <label for="it-knowledge">IT knowledge</label>
+                    <input type="range" name="it-knowledge" id="it-knowledge" min="1" max="10" step="1" value="10">
+                    <output id="value"></output>
+                </div>
+                <div class="fieldset-wrapper">
+                    <fieldset class="radio-group">
+                        <legend>Choose a group:</legend>
+                        <div>
+                            <input type="radio" name="radio" id="feu1" value="feu 1">
+                            <label for="feu1">FEU 1gr.</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="radio" id="feu2" value="feu 2">
+                            <label for="feu2">FEU 2gr.</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="radio" id="feu3" value="feu 3">
+                            <label for="feu3">FEU 3gr.</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="radio" id="feu4" value="feu 4">
+                            <label for="feu4">FEU 4gr.</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="radio" id="feu5" value="feu 5">
+                            <label for="feu5">FEU 5gr.</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="checkbox-group">
+                        <legend>Choose IT language:</legend>
+                        <div>
+                            <input type="checkbox" name="interest" id="java" value="java">
+                            <label for="java">Java</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="interest" id="javascript" value="javascript">
+                            <label for="javascript">JavaScript</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="interest" id="php" value="php">
+                            <label for="php">PHP</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="interest" id="python" value="python">
+                            <label for="python">Python</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="interest" id="C++" value="C++">
+                            <label for="cplus">C++</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="interest" id="swift" value="swift">
+                            <label for="swift">Swift</label>
+                        </div>
+                    </fieldset>
+                </div>
+                
+
+                <input class="submit-button" type="submit" value="Register Student">
+
+            </form>
+        </div>
+        
+        <div id="students-list">
+
+        </div>
+    </div>
+        
+<script src="task-form.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+body {
+    margin: 0;
+}
+
+.hero-box-content-wrapper {
+    background-image: url(images/9814fe79176619.5cbb31d232a25.jpg);
+    background-repeat: no-repeat;
+    background-position: 100% 30%;
+    background-color: #F5F6F8;
+}
+
+.content-wrapper {
+    padding: 250px 200px 400px;
+}
+
+.text-wrapper {
+    margin-bottom: 100px;
+    max-width: 700px;
+}
+
+.hero-box-title {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-size: 70px;
+    color: rgb(241, 86, 86);
+    margin-bottom: 0;
+}
+
+.hero-box-paragraph {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #4F4F4F;
+}
+
+.hero-box-button {
+    padding: 12px 50px;
+    border: 2px solid rgb(241, 86, 86);
+    border-radius: 50px;
+    background-color: #F5F6F8;
+    color: rgb(241, 86, 86);
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.hero-box-button:hover {
+    border: 2px solid rgb(241, 86, 86);
+    background-color: rgb(241, 86, 86);
+    color: white;
+}
+
+
+
+
+.form-list-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+}
+
+#form-wrapper {
+    margin-top: 50px;
+}
+
+.form-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    color: rgb(241, 86, 86);
+    padding: 40px 0 25px 100px;
+    margin: 0;
+}
+
+#student-form {
+    padding: 0 100px 50px;
+}
+
+.input-error-message {
+    color: red;
+    font-family: 'Poppins', sans-serif;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
+.input-group:nth-child(5), 
+.input-group-it {
+    margin-bottom: 35px;
+}
+
+label {
+    font-size: 15px;
+    color: #303D8B;
+    font-family: 'Poppins', sans-serif;
+    margin: 0 15px 0 0;
+    font-weight: 600;
+}
+
+.input {
+    border: 1px solid lightslategrey;
+    padding: 7px;
+    font-size: 15px;
+    margin: 5px 0 10px;
+    border-radius: 20px;
+}
+.input-error {
+    border-color: red;
+}
+
+.input.value {
+    margin-left: 20px;
+}
+
+.fieldset-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 45px 30px 0;
+}
+
+legend {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #303D8B;
+    font-weight: 600;
+}
+
+.radio-group, 
+.checkbox-group {
+    margin-bottom: 15px;
+    border: none;
+}
+
+.radio-group label, 
+.checkbox-group label {
+    color: black;
+    font-weight: 400;
+}
+.radio-group label:hover, 
+.checkbox-group label:hover {
+    color: rgb(241, 86, 86);
+}
+
+.submit-button {
+    padding: 12px 50px;
+    border: 2px solid rgb(241, 86, 86);
+    border-radius: 50px;
+    background-color: white;
+    color: rgb(241, 86, 86);
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.submit-button:hover {
+    color: white;
+    background-color: rgb(241, 86, 86);
+    border: 2px solid rgb(241, 86, 86);
+}
+
+
+#students-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    margin-top: 100px;
+}
+
+.student-item {
+    padding: 30px 50px 40px;
+    background-color: #F5F6F8;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+}
+
+.student-item h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #303D8B;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.student-item h4 {
+    font-family: 'Poppins', sans-serif;
+    color: #303D8B;
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.student-item p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    margin: 0;
+}
+
+.student-item .interests-wrapper ul {
+    margin-top: 0;
+}
+
+.student-item .interests-wrapper li {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+}
+
+.student-item button {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    border: none;
+    color: rgb(241, 86, 86);
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 1px;
+    margin: 10px 0;
+    padding: 0;
+    display: flex;
+
+}
+
+.student-item button:hover {
+    color: #303D8B;
+}
