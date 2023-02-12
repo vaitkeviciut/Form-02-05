@@ -1,3 +1,24 @@
+// SEPTINTA UŽDUOTIS:
+// 1. Prie kiekvieno studento pridėti mygtuką, kurį paspaudus leistų redaguoti studento duomenis.
+// 2. Redaguojant studentą, submit mygtuko tekstas turėtų pasikeisti į „Save Changes".
+// 3. Pakeitus studento duomenis, turi iššokti <span> elementas, kuris informuoja apie studento duomenų redagavimą: „Studento (Vardas Pavardė) duomenys sėkmingai pakeisti". Šis span elementas dingsta po 5 sekundžių. 1. Sukurti Edit mygtuką.
+// 2. Prie mygtuko pridėti event listener'į.
+// 3. Surinkti studento duomenis ir jais užpildyti formos laukelius.
+// 4. Pakeisti formos submit mygtuko tekstą.
+// 5. Išsaugoti studento HTML elementą kintamąjame.
+// 6. Submit event'o metu patikrinti ar kuriame naują studentą, ar redaguojame jau sukurtą.
+// 7. Jeigu studentas redaguojamas, šį naują (redaguotą) HTML elementą panaudoti perrašant seną studento HTML elementą (kuris išsaugotas 5 žingsnyje). 8. Pakeisti formos submit mygtuko tekstą į pradinį ir pakeisti iššokančio pranešimo tekstą.
+
+// AŠTUNTA UŽDUOTIS (local storage):
+// 1. Vedamą tekstą į input elementus išsaugoti į localStorage.
+// 2. Perkrovus puslapį localStorage esančiomis reikšmėmis užpildyti input elementus.
+// 3. Jeigu sukuriamas studentas, tai localStorage esančias reikšmes reikia išvalyti.
+
+// DEŠIMTA UŽDUOTIS:
+// 1. Studento kūrimo ir redagavimo metu reikia sukurti visų studentų masyvą (tokiu pačiu formatu kaip ir initialData).
+// 2. Šį masyvą pridėti į localStorage.
+// 3. Puslapio perkrovimo metu iš localStorage esančio masyvo sukurti studentų sąrašą (pradinių studentų sukūrimo funkcionalumas).
+
 let initialData = [
   {
     name: 'John',
@@ -51,8 +72,19 @@ let initialData = [
   },
 ]
 
+// const strStudentData = JSON.stringify(initialData);
+// console.log(strStudentData)
+
+// localStorage.setItem('studentData', strStudentData)
+// const localStrStudentData = localStorage.getItem('studentData');
+// const localObjStudentData = JSON.parse(localStrStudentData);
+
+
+
 const studentForm = document.querySelector('#student-form');
 const studentList = document.querySelector('#students-list');
+
+let editStudent = null;
 
 const studentRange = studentForm.querySelector('#it-knowledge');
 const rangeValue = studentForm.querySelector('#value');
@@ -71,87 +103,42 @@ studentForm.addEventListener('submit', (event) => {
   const nameInput = event.target.name;
   const firstName = nameInput.value;
   const surname = event.target.surname.value;
-  const age = event.target.age.value;
-  const phone = event.target.phone.value;
-  const email = event.target.email.value;
-  const itKnowledge = event.target['it-knowledge'].value;
-  const group = event.target.radio.value;
-  const interests = event.target.querySelectorAll('[name="interest"]:checked');
 
-  const studentItem = document.createElement('div');
-  studentItem.classList.add('student-item');
-  const title = document.createElement('h3');
-  const mainInfo = document.createElement('p');
-  const knowledge = document.createElement('p');
-  const groupTitle = document.createElement('p');
-  const contacts = document.createElement('h4');
-  const phoneElement = document.createElement('p');
-  const emailElement = document.createElement('p');
-  const interestsWrapper = document.createElement('div');
-  interestsWrapper.classList.add('interests-wrapper');
-  const interestsTitle = document.createElement('h4');
-  interestsTitle.classList.add('interests-title');
+  let studentInterestElements = event.target.querySelectorAll('[name="interest"]:checked');
 
-  title.textContent = 'Student Info';
-  mainInfo.textContent = `${firstName} ${surname} is ${age} years old.`;
-  contacts.textContent = 'Student contacts:';
-  knowledge.textContent = `IT knowledge: ${itKnowledge}`;
-  groupTitle.textContent = `Group: ${group.toUpperCase()}gr.`;
-  phoneElement.textContent = `Phone: *******`;
-  emailElement.textContent = `Email: *******`;
-  interestsTitle.textContent = 'No interests :(';
+  const studentInterests = [...studentInterestElements ].map(interest => interest.value);
 
-  interestsWrapper.append(interestsTitle);
-
-  if (interests.length > 0) {
-    interestsTitle.textContent = 'Student interests:';
-    const interestListElement = document.createElement('ul');
-
-    interests.forEach(interest => {
-      const interestElement = document.createElement('li');
-      let firstLetter = interest.value.charAt(0).toUpperCase();
-      let wordEnd = interest.value.slice(1);
-      interestElement.textContent = firstLetter + wordEnd;
-  
-      interestListElement.append(interestElement);
-    })
-    interestsWrapper.append(interestListElement);
+  let studentDataObj = {
+    name: nameInput.value,
+    surname: event.target.surname.value,
+    age: event.target.age.value,
+    phone: event.target.phone.value,
+    email: event.target.email.value,
+    itKnowledge: event.target['it-knowledge'].value,
+    group: event.target.radio.value,
+    interests: studentInterests,
   }
 
-  const personalInfoButton = document.createElement('button');
-  personalInfoButton.textContent = 'Show personal info';
-  let infoHidden = true;
-
-  personalInfoButton.addEventListener('click', () => {
-    if (infoHidden) {
-      emailElement.textContent = `Email: ${email}`;
-      phoneElement.textContent = `Phone: ${phone}`;
-      personalInfoButton.textContent = 'Hide personal info';
-    } else {
-      emailElement.textContent = `Email: *******`;
-      phoneElement.textContent = `Phone: *******`;
-      personalInfoButton.textContent = 'Show personal info';
-    }
-    infoHidden = !infoHidden;
-  });
-
-  let removeStudentButton = document.createElement('button');
-  removeStudentButton.textContent = 'Delete student';
-
-  removeStudentButton.addEventListener('click', () => {
-    studentItem.remove();
-    let studentMessage = `Student ${firstName} ${surname} is deleted`;
+  if (editStudent) {
+    let studentMessage = `Student ${firstName} ${surname} is edited`;
     alertMessage(event.target, studentMessage);
-  })
+  } else {
+    let studentMessage = `Student ${firstName} ${surname} is registered`;
+    alertMessage(event.target, studentMessage);
+  }
 
-  studentItem.append(title, mainInfo, knowledge, groupTitle, contacts, phoneElement, emailElement, interestsWrapper, personalInfoButton, removeStudentButton);
-  studentList.prepend(studentItem);
+  renderStudents(studentDataObj, event.target);
 
   event.target.reset();
 
-  let studentMessage = `Student ${firstName} ${surname} is registered`;
-  alertMessage(event.target, studentMessage);
-
+  localStorage.setItem('name', '');
+  localStorage.setItem('surname', '');
+  localStorage.setItem('age', '');
+  localStorage.setItem('phone', '');
+  localStorage.setItem('email', '');
+  localStorage.setItem('it-knowledge', '');
+  localStorage.setItem('radio', '');
+  localStorage.setItem('interest', JSON.stringify([]));
 });
 
 function alertMessage(element, message, color = 'black') {
@@ -180,14 +167,14 @@ function renderInitialData(students, studentForm) {
 }
 
 function renderStudents(student, form) {
-  let firstName = student.name;
-  let surname = student.surname;
-  let age = student.age;
-  let phone = student.phone;
-  let email = student.email;
-  let itKnowledge = student.itKnowledge;
-  let group = student.group;
-  let interests = student.interests;
+  const firstName = student.name;
+  const surname = student.surname;
+  const age = student.age;
+  const phone = student.phone;
+  const email = student.email;
+  const itKnowledge = student.itKnowledge;
+  const group = student.group;
+  const interests = student.interests;
 
   const studentItem = document.createElement('div');
   studentItem.classList.add('student-item');
@@ -245,7 +232,7 @@ function renderStudents(student, form) {
     infoHidden = !infoHidden;
   });
 
-  let removeStudentButton = document.createElement('button');
+  const removeStudentButton = document.createElement('button');
   removeStudentButton.textContent = 'Delete student';
 
   removeStudentButton.addEventListener('click', () => {
@@ -254,8 +241,39 @@ function renderStudents(student, form) {
     alertMessage(form, studentMessage);
   })
 
-  studentItem.append(title, mainInfo, knowledge, groupTitle, contacts, phoneElement, emailElement, interestsWrapper, personalInfoButton, removeStudentButton);
-  studentList.prepend(studentItem);
+  const editStudentButton = document.createElement('button');
+  editStudentButton.textContent = 'Edit';
+
+  editStudentButton.addEventListener('click', () => {
+    form.name.value = firstName;
+    form.surname.value = surname;
+    form.age.value = age;
+    form.phone.value = phone;
+    form.email.value = email;
+    form['it-knowledge'].value = itKnowledge;
+    form.radio.value = group;
+
+    interests.forEach(interest => {
+      form.querySelector(`[name="interest"][value="${interest}"]`).checked = true;
+    });
+
+    let saveButton = document.querySelector('.submit-button');
+    saveButton.value = 'Save changes';
+    
+    editStudent = studentItem;
+  });
+
+  studentItem.append(title, mainInfo, knowledge, groupTitle, contacts, phoneElement, emailElement, interestsWrapper, personalInfoButton, removeStudentButton, editStudentButton);
+
+  if (editStudent) {
+    let saveButton = document.querySelector('.submit-button');
+    saveButton.value = 'Register student';
+    editStudent.replaceWith(studentItem);
+    editStudent = null;
+     
+  } else {
+    studentList.prepend(studentItem);
+  }
 }
 
 function formValidation(form) {
@@ -334,4 +352,52 @@ function inputErrorMessage(input, form, errorMessage) {
 renderInitialData(initialData, studentForm);
 
 
+studentForm.addEventListener('input', (event) => {
+  if (event.target.name === 'interest') {
+    let checkedInterests = studentForm.querySelectorAll('[name="interest"]:checked');
 
+    let checkedInterestValues = [...checkedInterests].map(interest => {
+      return interest.value;
+    })
+
+    localStorage.setItem('interest', JSON.stringify(checkedInterestValues));
+  } else {
+    localStorage.setItem(event.target.name, event.target.value);
+  }
+});
+
+if (localStorage.getItem('name')) {
+  studentForm.name.value = localStorage.getItem('name');
+}
+
+if (localStorage.getItem('surname')) {
+  studentForm.surname.value = localStorage.getItem('surname');
+}
+
+if (localStorage.getItem('age')) {
+  studentForm.age.value = localStorage.getItem('age');
+}
+
+if (localStorage.getItem('phone')) {
+  studentForm.phone.value = localStorage.getItem('phone');
+}
+
+if (localStorage.getItem('email')) {
+  studentForm.email.value = localStorage.getItem('email');
+}
+
+if (localStorage.getItem('it-knowledge')) {
+  studentForm['it-knowledge'].value = localStorage.getItem('it-knowledge');
+}
+
+if (localStorage.getItem('radio')) {
+  studentForm.group.value = localStorage.getItem('radio');
+}
+
+let localStorageInterests = JSON.parse(localStorage.getItem('interest'));
+
+if (localStorageInterests) {
+  localStorageInterests.map(localStorageInterest => {
+    studentForm.querySelector('[name="interest"][value="' + localStorageInterest + '"]').checked = true;
+  })
+}
