@@ -1,24 +1,3 @@
-// SEPTINTA UŽDUOTIS:
-// 1. Prie kiekvieno studento pridėti mygtuką, kurį paspaudus leistų redaguoti studento duomenis.
-// 2. Redaguojant studentą, submit mygtuko tekstas turėtų pasikeisti į „Save Changes".
-// 3. Pakeitus studento duomenis, turi iššokti <span> elementas, kuris informuoja apie studento duomenų redagavimą: „Studento (Vardas Pavardė) duomenys sėkmingai pakeisti". Šis span elementas dingsta po 5 sekundžių. 1. Sukurti Edit mygtuką.
-// 2. Prie mygtuko pridėti event listener'į.
-// 3. Surinkti studento duomenis ir jais užpildyti formos laukelius.
-// 4. Pakeisti formos submit mygtuko tekstą.
-// 5. Išsaugoti studento HTML elementą kintamąjame.
-// 6. Submit event'o metu patikrinti ar kuriame naują studentą, ar redaguojame jau sukurtą.
-// 7. Jeigu studentas redaguojamas, šį naują (redaguotą) HTML elementą panaudoti perrašant seną studento HTML elementą (kuris išsaugotas 5 žingsnyje). 8. Pakeisti formos submit mygtuko tekstą į pradinį ir pakeisti iššokančio pranešimo tekstą.
-
-// AŠTUNTA UŽDUOTIS (local storage):
-// 1. Vedamą tekstą į input elementus išsaugoti į localStorage.
-// 2. Perkrovus puslapį localStorage esančiomis reikšmėmis užpildyti input elementus.
-// 3. Jeigu sukuriamas studentas, tai localStorage esančias reikšmes reikia išvalyti.
-
-// DEŠIMTA UŽDUOTIS:
-// 1. Studento kūrimo ir redagavimo metu reikia sukurti visų studentų masyvą (tokiu pačiu formatu kaip ir initialData).
-// 2. Šį masyvą pridėti į localStorage.
-// 3. Puslapio perkrovimo metu iš localStorage esančio masyvo sukurti studentų sąrašą (pradinių studentų sukūrimo funkcionalumas).
-
 let initialData = [
   {
     name: 'John',
